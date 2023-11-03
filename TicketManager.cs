@@ -47,40 +47,43 @@ public class TicketManager
                 TaskFile.Tickets.Add(task);
                 TaskFile.WriteTicket(task);
             }
-            else if (resp == "5")
-            {
-                Console.WriteLine("Enter search criteria:");
-                string criteria = Console.ReadLine();
+            // else if (resp == "5")
+            // {
+            //     Console.WriteLine("Enter search criteria:");
+            //     string criteria = Console.ReadLine();
 
-                var defectBugResults = DefectBugFile.SearchTickets(t => t.Status.ToLower().Contains(criteria.ToLower())
-                || t.Priority.ToLower().Contains(criteria.ToLower())
-                || t.Submitter.ToLower().Contains(criteria.ToLower()));
+            // var DefectBug = DefectBugFile.Tickets.Where(t => t.Status.Contains("(status)"));
 
-                var enhancementResults = EnhancementFile.SearchTickets(t => t.Status.ToLower().Contains(criteria.ToLower())
-                || t.Priority.ToLower().Contains(criteria.ToLower())
-                || t.Submitter.ToLower().Contains(criteria.ToLower()));
+            //     var defectBugResults = DefectBugFile.SearchTickets(t => t.Status.ToLower().Contains(criteria.ToLower())
+            //   || t.Priority.ToLower().Contains(criteria.ToLower())
+            //   || t.Submitter.ToLower().Contains(criteria.ToLower()));
 
-                var taskResults = TaskFile.SearchTickets(t => t.Status.ToLower().Contains(criteria.ToLower())
-                || t.Priority.ToLower().Contains(criteria.ToLower())
-                || t.Submitter.ToLower().Contains(criteria.ToLower()));
+            //     var enhancementResults = EnhancementFile.SearchTickets(t => t.Status.ToLower().Contains(criteria.ToLower())
+            //     || t.Priority.ToLower().Contains(criteria.ToLower())
+            //     || t.Submitter.ToLower().Contains(criteria.ToLower()));
 
-                Console.WriteLine($"Found {defectBugResults.Count + enhancementResults.Count + taskResults.Count} tickets");
+            //     var taskResults = TaskFile.SearchTickets(t => t.Status.ToLower().Contains(criteria.ToLower())
+            //     || t.Priority.ToLower().Contains(criteria.ToLower())
+            //     || t.Submitter.ToLower().Contains(criteria.ToLower()));
 
-                foreach (var ticket in defectBugResults)
-                {
-                    ticket.Display();
-                }
+            //     Console.WriteLine($"Found {defectBugResults.Count + enhancementResults.Count + taskResults.Count} tickets");
 
-                foreach (var ticket in enhancementResults)
-                {
-                    ticket.Display();
-                }
 
-                foreach (var ticket in taskResults)
-                {
-                    ticket.Display();
-                }
-            }
+            //     foreach (var ticket in defectBugResults)
+            //     {
+            //         ticket.Display();
+            //     }
+
+            //     foreach (var ticket in enhancementResults)
+            //     {
+            //         ticket.Display();
+            //     }
+
+            //     foreach (var ticket in taskResults)
+            //     {
+            //         ticket.Display();
+            //     }
+            // }
 
             else if (resp == "5")
             {
@@ -88,20 +91,16 @@ public class TicketManager
                 Console.WriteLine("Enter search criteria: ");
                 string criteria = Console.ReadLine();
 
-                // var ticket = DefectBugFile.Tickets.Where(t => t.Status.Contains("(status)"));
-                // var validate = DefectBugFile.Tickets.Any(t => t.Status.Contains("(status)"));
-                // Console.WriteLine($"Status returns the result of: {validate} with {ticket.Count()}");
+                var ticket = DefectBugFile.Tickets.Where(t => t.Status.Contains("(status)"));
+                var validate = DefectBugFile.Tickets.Any(t => t.Status.Contains("(status)"));
+                Console.WriteLine($"Status returns the result of: {validate} with {ticket.Count()}");
 
                 Console.ForegroundColor = ConsoleColor.White;
                 var results = DefectBugFile.SearchTickets
                 (t => t.Status.ToLower().Contains(criteria.ToLower())
                 || t.Priority.ToLower().Contains(criteria.ToLower())
                 || t.Submitter.ToLower().Contains(criteria.ToLower()));
-                Console.WriteLine($"Found {results.Count} tickets");
-                foreach (var ticket in results)
-                {
-                    ticket.Display();
-                }
+                
             }
             else if (resp == "6")
             {

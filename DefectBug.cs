@@ -9,7 +9,9 @@ public class DefectBug : Ticket
         
     } 
 
-    public string Severity { get; set; }  
+    public string Severity { get; set; }
+    public object ticket { get; internal set; }
+
     public override void FromCsvLine(string line)
     {
         var fields = line.Split(',');
