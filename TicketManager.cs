@@ -91,8 +91,15 @@ public class TicketManager
 
             else if (resp == "5")
             {
-                Console.WriteLine("Enter search status(started or not started or complete):");
+                Console.WriteLine("Enter search status(started or not started or complete): ");
                 string criteria = Console.ReadLine();
+
+                Console.WriteLine("Enter the priority you want to search for ('high', 'moderate', 'low'):");
+                string priority = Console.ReadLine();
+
+                Console.WriteLine("Enter the submitter you want to search for ('Joe', 'Lisa', 'Sue'):");
+                string submitter = Console.ReadLine();
+               
 
                 var defectBugResults = DefectBugFile.Tickets.Where(t => t.Status.ToLower().Contains(criteria.ToLower())
               || t.Priority.ToLower().Contains(criteria.ToLower())
