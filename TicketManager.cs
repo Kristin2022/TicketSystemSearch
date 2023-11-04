@@ -91,6 +91,7 @@ public class TicketManager
 
             else if (resp == "5")
             {
+                Console.ForegroundColor = ConsoleColor.Green;
                 Console.WriteLine("Enter search status(started or not started or complete): ");
                 string criteria = Console.ReadLine();
 
