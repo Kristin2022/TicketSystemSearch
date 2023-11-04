@@ -49,45 +49,7 @@ public class TicketManager
                 TaskFile.Tickets.Add(task);
                 TaskFile.WriteTicket(task);
             }
-            // else if (resp == "5")
-            // {
-            //     Console.ForegroundColor = ConsoleColor.Green;
-            //     Console.WriteLine("Enter search criteria: ");
-            //     string criteria = Console.ReadLine().ToLower(); // Convert to lower case for case-insensitive search
-
-            //     var defectBugResults = DefectBugFile.Tickets.Where(t =>
-            //         t.Status.ToLower().Contains(criteria) ||
-            //         t.Priority.ToLower().Contains(criteria) ||
-            //         t.Submitter.ToLower().Contains(criteria)).ToList();
-
-            //     var enhancementResults = EnhancementFile.Tickets.Where(t =>
-            //         t.Status.ToLower().Contains(criteria) ||
-            //         t.Priority.ToLower().Contains(criteria) ||
-            //         t.Submitter.ToLower().Contains(criteria)).ToList();
-
-            //     var taskResults = TaskFile.Tickets.Where(t =>
-            //         t.Status.ToLower().Contains(criteria) ||
-            //         t.Priority.ToLower().Contains(criteria) ||
-            //         t.Submitter.ToLower().Contains(criteria)).ToList();
-
-            //     Console.ForegroundColor = ConsoleColor.White;
-            //     Console.WriteLine($"Found {defectBugResults.Count + enhancementResults.Count + taskResults.Count} tickets");
-
-            //     foreach (var ticket in defectBugResults)
-            //     {
-            //         ticket.Display();
-            //     }
-
-            //     foreach (var ticket in enhancementResults)
-            //     {
-            //         ticket.Display();
-            //     }
-
-            //     foreach (var ticket in taskResults)
-            //     {
-            //         ticket.Display();
-            //     }
-            // }
+        
 
             else if (resp == "5")
             {
