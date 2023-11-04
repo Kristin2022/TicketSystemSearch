@@ -112,7 +112,7 @@ public class TicketManager
                 var taskResults = TaskFile.Tickets.Where(t => t.Status.ToLower().Contains(criteria.ToLower())
                               || t.Priority.ToLower().Contains(criteria.ToLower())
                               || t.Submitter.ToLower().Contains(criteria.ToLower()));
-
+                
                 Console.WriteLine($"Found {defectBugResults.Count() + enhancementResults.Count() + taskResults.Count()} tickets");
 
                 foreach (var ticket in defectBugResults)
