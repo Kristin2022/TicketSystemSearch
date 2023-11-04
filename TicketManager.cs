@@ -1,4 +1,6 @@
 
+using System.Linq;
+
 public class TicketManager
 {
     public TicketFile<DefectBug> DefectBugFile { get; set; }
@@ -49,25 +51,27 @@ public class TicketManager
             }
             // else if (resp == "5")
             // {
-            //     Console.WriteLine("Enter search criteria:");
-            //     string criteria = Console.ReadLine();
+            //     Console.ForegroundColor = ConsoleColor.Green;
+            //     Console.WriteLine("Enter search criteria: ");
+            //     string criteria = Console.ReadLine().ToLower(); // Convert to lower case for case-insensitive search
 
-            // var DefectBug = DefectBugFile.Tickets.Where(t => t.Status.Contains("(status)"));
+            //     var defectBugResults = DefectBugFile.Tickets.Where(t =>
+            //         t.Status.ToLower().Contains(criteria) ||
+            //         t.Priority.ToLower().Contains(criteria) ||
+            //         t.Submitter.ToLower().Contains(criteria)).ToList();
 
-            //     var defectBugResults = DefectBugFile.SearchTickets(t => t.Status.ToLower().Contains(criteria.ToLower())
-            //   || t.Priority.ToLower().Contains(criteria.ToLower())
-            //   || t.Submitter.ToLower().Contains(criteria.ToLower()));
+            //     var enhancementResults = EnhancementFile.Tickets.Where(t =>
+            //         t.Status.ToLower().Contains(criteria) ||
+            //         t.Priority.ToLower().Contains(criteria) ||
+            //         t.Submitter.ToLower().Contains(criteria)).ToList();
 
-            //     var enhancementResults = EnhancementFile.SearchTickets(t => t.Status.ToLower().Contains(criteria.ToLower())
-            //     || t.Priority.ToLower().Contains(criteria.ToLower())
-            //     || t.Submitter.ToLower().Contains(criteria.ToLower()));
+            //     var taskResults = TaskFile.Tickets.Where(t =>
+            //         t.Status.ToLower().Contains(criteria) ||
+            //         t.Priority.ToLower().Contains(criteria) ||
+            //         t.Submitter.ToLower().Contains(criteria)).ToList();
 
-            //     var taskResults = TaskFile.SearchTickets(t => t.Status.ToLower().Contains(criteria.ToLower())
-            //     || t.Priority.ToLower().Contains(criteria.ToLower())
-            //     || t.Submitter.ToLower().Contains(criteria.ToLower()));
-
+            //     Console.ForegroundColor = ConsoleColor.White;
             //     Console.WriteLine($"Found {defectBugResults.Count + enhancementResults.Count + taskResults.Count} tickets");
-
 
             //     foreach (var ticket in defectBugResults)
             //     {
@@ -87,20 +91,39 @@ public class TicketManager
 
             else if (resp == "5")
             {
-                Console.ForegroundColor = ConsoleColor.Green;
-                Console.WriteLine("Enter search criteria: ");
+                Console.WriteLine("Enter search status(started or not started or complete):");
                 string criteria = Console.ReadLine();
 
-                var ticket = DefectBugFile.Tickets.Where(t => t.Status.Contains("(status)"));
-                var validate = DefectBugFile.Tickets.Any(t => t.Status.Contains("(status)"));
-                Console.WriteLine($"Status returns the result of: {validate} with {ticket.Count()}");
+                var defectBugResults = DefectBugFile.Tickets.Where(t => t.Status.ToLower().Contains(criteria.ToLower())
+              || t.Priority.ToLower().Contains(criteria.ToLower())
+              || t.Submitter.ToLower().Contains(criteria.ToLower()));
 
-                Console.ForegroundColor = ConsoleColor.White;
-                var results = DefectBugFile.SearchTickets
-                (t => t.Status.ToLower().Contains(criteria.ToLower())
-                || t.Priority.ToLower().Contains(criteria.ToLower())
-                || t.Submitter.ToLower().Contains(criteria.ToLower()));
-                
+                var enhancementResults = EnhancementFile.Tickets.Where(t => t.Status.ToLower().Contains(criteria.ToLower())
+                              || t.Priority.ToLower().Contains(criteria.ToLower())
+                              || t.Submitter.ToLower().Contains(criteria.ToLower()));
+
+                var taskResults = TaskFile.Tickets.Where(t => t.Status.ToLower().Contains(criteria.ToLower())
+                              || t.Priority.ToLower().Contains(criteria.ToLower())
+                              || t.Submitter.ToLower().Contains(criteria.ToLower()));
+
+                Console.WriteLine($"Found {defectBugResults.Count() + enhancementResults.Count() + taskResults.Count()} tickets");
+
+                foreach (var ticket in defectBugResults)
+                {
+                    ticket.Display();
+                }
+
+                foreach (var ticket in enhancementResults)
+                {
+                    ticket.Display();
+                }
+
+                foreach (var ticket in taskResults)
+                {
+                    ticket.Display();
+                }
+
+
             }
             else if (resp == "6")
             {
@@ -135,6 +158,10 @@ public class TicketManager
             ticket.DisplaySearch();
         }
     }
+
+    //Search criteria 
+
+
     //Menu display to user
     public DefectBug EnterDefectBugTicket()
     {
