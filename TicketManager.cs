@@ -49,7 +49,7 @@ public class TicketManager
                 TaskFile.Tickets.Add(task);
                 TaskFile.WriteTicket(task);
             }
-        
+
 
             else if (resp == "5")
             {
@@ -62,7 +62,7 @@ public class TicketManager
 
                 Console.WriteLine("Enter the submitter you want to search for ('Joe', 'Lisa', 'Sue'):");
                 string submitter = Console.ReadLine();
-               
+
 
                 var defectBugResults = DefectBugFile.Tickets.Where(t => t.Status.ToLower().Contains(criteria.ToLower())
               || t.Priority.ToLower().Contains(criteria.ToLower())
@@ -75,7 +75,7 @@ public class TicketManager
                 var taskResults = TaskFile.Tickets.Where(t => t.Status.ToLower().Contains(criteria.ToLower())
                               || t.Priority.ToLower().Contains(criteria.ToLower())
                               || t.Submitter.ToLower().Contains(criteria.ToLower()));
-                
+
                 Console.WriteLine($"Found {defectBugResults.Count() + enhancementResults.Count() + taskResults.Count()} tickets");
 
                 foreach (var ticket in defectBugResults)
@@ -128,9 +128,6 @@ public class TicketManager
             ticket.DisplaySearch();
         }
     }
-
-    //Search criteria 
-
 
     //Menu display to user
     public DefectBug EnterDefectBugTicket()
